@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Andela Group Salary Calculator</title>
+  </head>
+<body>
+    <div class="header">
+        <div class="head">
+            <h1>Group 6 Salary Calculator for Andela Inc.</h1>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="content">
+        <form class="calcSal" name="calcSal" id="calcSal" action="">
+            <div class="form-group">
+                  <label>Please select the employee type:</label>
+                <select name="getEmpType" id="getEmpType" class="select getEmpType">
+                    <option value="0"> Select One</option>
+                    <option value="5000"> Interns </option>
+                    <option value="10000"> Associates </option>
+                    <option value="20000"> Managers </option>
+                    <option value="30000"> Executives </option>
+                    <option value="50000"> Directors </option>
+                </select>
+            </div>
+            <div class="clear"></div>
+            <div class="form-group">
+                <label>Please select the experience level:</label>
+                <select name="getExperience" id="getExperience" class="select getExperience" required>
+                    <option value="0"> Select One</option>
+                    <option value="0.05"> 0 - 2 years </option>
+                    <option value="0.1"> 2 - 5 years </option>
+                    <option value="0.2"> 5 - 10 years </option>
+                    <option value="0.4"> 10+ years </option>
+                </select>
+            </div>
+            <div class="clear"></div>
+            <div class="submit">
+                <a href="javascript:void(0)" onclick="calcSalary()" class="btn btn-default btn-rounded btn-icon btn-float">Calculate</a>
+            </div>
+        </form>
+
+        <hr/>
+
+        <div class="result">
+            <div class="form-group">
+                <h3><div id="monthlySal">Monthly Salary: </div></h3>
+            </div>
+            <div style="margin: 20px;"></div>
+            <div class="form-group">
+                <h3><div id="yearlySal">Yearly Salary: </div></h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function calcSalary() {
+        var experience = document.getElementById("getExperience");
+        var empType = document.getElementById("getEmpType");
+        var exp = experience.options[experience.selectedIndex].value;
+        var emp = empType.options[empType.selectedIndex].value;
+
+        if ((exp === "0") || (emp === "0")) {
+            alert("Invalid input");
+        } else {
+            var objEmpType = {"5000" : "Intern", "10000" : "Associate", "20000":"Manager", "30000":"Executive", "50000":"Director" };
+            var objEmpYears = {"0.05" : "0 - 2", "0.1" : "2 - 5", "0.2":"5 - 10", "0.4":"10+"};
+            var monthlySalary = (parseInt(emp) * parseFloat(exp)) + parseInt(emp);
+            var yearlySalary = monthlySalary * 12;
+
+            document.getElementById("monthlySal").innerHTML = "Monthly Salary: NGN " + monthlySalary;
+            document.getElementById("yearlySal").innerHTML = "Yearly Salary: NGN " + yearlySalary;
+        }
+    }
+</script>
+</html>
